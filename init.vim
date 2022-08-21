@@ -7,9 +7,14 @@ call plug#begin('~/.local/shared/nvim/plugged')
     Plug 'https://github.com/vim-airline/vim-airline' " Status bar
     " Core completion extension
     Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+    " Find files
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+    Plug 'sharkdp/fd' " (finder)
+    " Plug 'nvim-treesitter/nvim-treesitter ' "(finder/preview)
+    Plug 'BurntSushi/ripgrep'
     " Edit related
     Plug 'scrooloose/nerdtree' " file system
-    Plug 'christoomey/vim-tmux-navigator'
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'Yggdroot/indentLine'
     Plug 'https://github.com/tpope/vim-commentary' " comment
@@ -177,6 +182,11 @@ nmap <silent> gr <Plug>(coc-references)
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " Vim Bookmark
 highlight BookmarkSign ctermbg=NONE ctermfg=160
