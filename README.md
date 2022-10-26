@@ -12,9 +12,7 @@
 
 
 
-> 如果全世界的程序员能将折腾编辑器的时间减少一半...
->
-> If all the programmers can spend less time playing with editors...
+> Final answer of your vim editor
 
 
 ## Installation(tested on macOS and Cent OS server)
@@ -59,8 +57,7 @@ Plugin Manager: [vim-plug](https://github.com/junegunn/vim-plug)
 
 * [nerdCommenter](https://github.com/scrooloose/nerdcommenter), comment code easily
 
-~~* [vim-colors](https://github.com/jakwings/vim-colors), manage the color schemes~~
-  > I started to use separate color-scheme plugins. Like Gruvbox, One and challenger_deep, refer to vimrc for details.
+* [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim), a highly extendable fuzzy finder over lists
 
 
   
@@ -82,3 +79,4 @@ The main configuration file is actually `~/nvim/init.vim`, thus you'd better del
 * Color Display
 
   Some scripts has been added to `vimrc` to ensure the emulator to show the true color of your pretty color scheme.
+* Compatability with tmux
