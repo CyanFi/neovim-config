@@ -55,6 +55,7 @@ Plugin Manager: [vim-plug](https://github.com/junegunn/vim-plug)
 
 * [identLine](https://github.com/Yggdroot/indentLine), show the indent line
 
+* [tagbar] (https://github.com/preservim/tagbar), browse the tags of the current code file and get an overview of its structure
 * [nerdCommenter](https://github.com/scrooloose/nerdcommenter), comment code easily
 
 * [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim), a highly extendable fuzzy finder over lists
