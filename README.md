@@ -60,11 +60,7 @@ Plugin Manager: [vim-plug](https://github.com/junegunn/vim-plug)
 
 * [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim), a highly extendable fuzzy finder over lists
 
-
-  
-> To install coc.nvim, make sure you have node or node.js installed, refer to the coc repo above for details.
-
-  
+* [copilot.vim](https://github.com/github/copilot.vim), GitHub Copilot for nvim  
 * [goyo](https://github.com/junegunn/goyo.vim), 🌷 Distraction-free writing in Vim
 
 * Vim-Bookmark

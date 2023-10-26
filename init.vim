@@ -5,17 +5,17 @@ filetype off
 call plug#begin('~/.local/shared/nvim/plugged')
     "tag line 
     Plug 'nanozuki/tabby.nvim'
+    " Completion
+    Plug 'github/copilot.vim'
     "status bar
     " Plug 'https://github.com/vim-airline/vim-airline' " Status bar
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'romgrk/barbar.nvim'
     Plug 'kyazdani42/nvim-web-devicons'
-    " Core completion extension
-    Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
     " Find files
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-    Plug 'sharkdp/fd' " (finder)
+    Plug 'sharkdp/fd' " finder
     " Plug 'nvim-treesitter/nvim-treesitter ' "(finder/preview)
     Plug 'BurntSushi/ripgrep'
     " Edit related
@@ -24,7 +24,6 @@ call plug#begin('~/.local/shared/nvim/plugged')
     Plug 'Yggdroot/indentLine'
     Plug 'https://github.com/tpope/vim-commentary' " comment
     Plug 'vim-python/python-syntax'
-    " Plug 'vim-scripts/vim-auto-save'
     " Plug 'jiangmiao/auto-pairs'
     Plug 'https://github.com/preservim/tagbar'
     Plug 'tpope/vim-surround'
@@ -43,6 +42,8 @@ call plug#begin('~/.local/shared/nvim/plugged')
     Plug 'rakr/vim-one'
     "Goyo
     Plug 'junegunn/goyo.vim'
+    "Vimtex
+    Plug 'lervag/vimtex'
 call plug#end()
 
 
@@ -397,18 +398,6 @@ colo seoul256
 let g:python_highlight_all = 1
 let g:python_highlight_space_errors = 0
 
-" coc Autocompletion
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1):
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-" confirm by <CR>
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
