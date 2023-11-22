@@ -1,5 +1,4 @@
 <h1 align="center" style="font-family:georgia">Self-maintained NeoVim Configuration</h1>
-<h4 align="center">Lightweight and Easy to Deploy</h4>
 <hr/>
 <p align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Vimlogo.svg" width="250" height="250"/>
@@ -15,14 +14,14 @@
 > Final answer of your vim editor
 
 
-## Installation(tested on macOS and Cent OS server)
+## Installation (tested on macOS and Cent OS server)
 
 Install neovim(skip if you already done)
 (MacOS)
 ```bash
 brew install neovim
 ```
-
+Python is required, with package `pynvim` installed. Type `:checkhealth` to trouble shoot.
 Back up your original Neovim configuration(if you have one)
 
 ```bash
@@ -61,19 +60,15 @@ Plugin Manager: [vim-plug](https://github.com/junegunn/vim-plug)
 * [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim), a highly extendable fuzzy finder over lists
 
 * [copilot.vim](https://github.com/github/copilot.vim), GitHub Copilot for nvim  
-* [goyo](https://github.com/junegunn/goyo.vim), 🌷 Distraction-free writing in Vim
+* vimtex and ultisnips for fast math typing.
 
-* Vim-Bookmark
-
-* To be continued...
-
-The main configuration file is actually `~/nvim/init.vim`, thus you'd better delete the `.vimrc` in in your home dictionary. Refer to the Neovim site for more detailed information.
+The main configuration file is actually `~/.config/nvim/init.vim`, thus you'd better delete the `.vimrc` in in your home dictionary. Refer to the Neovim site for more detailed information.
 
 
 
-## Some Loooooonglasting Issues with this configuration:
+<!-- ## Some Loooooonglasting Issues with this configuration: -->
 
-* Color Display
+<!-- * Color Display -->
 
-  Some scripts has been added to `vimrc` to ensure the emulator to show the true color of your pretty color scheme.
-* Compatability with tmux
+<!--   Some scripts has been added to `vimrc` to ensure the emulator to show the true color of your pretty color scheme. -->
+<!-- * Compatability with tmux -->

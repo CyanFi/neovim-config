@@ -1,68 +1,83 @@
 set number
 set nocompatible
-filetype off
+" This is necessary for VimTeX to load properly. The "indent" is optional.
+" Note that most plugin managers will do this automatically.
+filetype plugin indent on
 
+" This enables Vim's and neovim's syntax-related features. Without this, some
+"VimTeX features will not work (see ":help vimtex-requirements" for more
+" info).
+syntax enable
 call plug#begin('~/.local/shared/nvim/plugged')
-    "tag line 
-    Plug 'nanozuki/tabby.nvim'
-    " Completion
+    "" Completion
     Plug 'github/copilot.vim'
-    "status bar
-    " Plug 'https://github.com/vim-airline/vim-airline' " Status bar
+    ""status bar
     Plug 'nvim-lualine/lualine.nvim'
+    " tab
     Plug 'romgrk/barbar.nvim'
+    " file icons
     Plug 'kyazdani42/nvim-web-devicons'
-    " Find files
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-    Plug 'sharkdp/fd' " finder
-    " Plug 'nvim-treesitter/nvim-treesitter ' "(finder/preview)
-    Plug 'BurntSushi/ripgrep'
-    " Edit related
+    "" Find files
+    "Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+    "Plug 'sharkdp/fd' " finder
+    "" Plug 'nvim-treesitter/nvim-treesitter ' "(finder/preview)
+    "Plug 'BurntSushi/ripgrep'
+    "" Edit related
     Plug 'scrooloose/nerdtree' " file system
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'Yggdroot/indentLine'
+    "Plug 'Xuyuanp/nerdtree-git-plugin'
+    "Plug 'Yggdroot/indentLine'
     Plug 'https://github.com/tpope/vim-commentary' " comment
-    Plug 'vim-python/python-syntax'
-    " Plug 'jiangmiao/auto-pairs'
+    "" Plug 'jiangmiao/auto-pairs'
     Plug 'https://github.com/preservim/tagbar'
-    Plug 'tpope/vim-surround'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'MattesGroeger/vim-bookmarks'
-    " Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal, but not
-    " working
-    " Special Script Grammar enhancement
-    Plug 'cespare/vim-toml'
+    "Plug 'tpope/vim-surround'
+    "Plug 'airblade/vim-gitgutter'
+    " Plug 'MattesGroeger/vim-bookmarks'
+
     " Color Scheme
-    Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-    Plug 'liuchengxu/space-vim-theme'
     Plug 'junegunn/seoul256.vim'
-    Plug 'crusoexia/vim-monokai'
-    Plug 'NLKNguyen/papercolor-theme'
-    Plug 'rakr/vim-one'
-    "Goyo
-    Plug 'junegunn/goyo.vim'
     "Vimtex
     Plug 'lervag/vimtex'
+    Plug 'sirver/ultisnips'
 call plug#end()
 
+" tex
+au FileType tex setlocal conceallevel=0
+setlocal spell
+set spelllang=en_us
+" <C-l> to select the last mistake and correct it with the first choice.
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u 
+
+let g:tex_flavor = 'latex'
+let g:vimtex_quickfix_mode = 0
+
+let g:vimtex_view_method = 'skim'
+
+let g:vimtex_view_skim_sync = 1 " Value 1 allows forward search after every successful compilation
+let g:vimtex_view_skim_activate = 1 " Value 1 allows change focus to skim after command `:VimtexView` is given
+
+
+
+" ultisnip
+let g:UltiSnipsExpandTrigger       = '<Tab>'    " use Tab to expand snippets
+let g:UltiSnipsJumpForwardTrigger  = '<Tab>'    " use Tab to move forward through tabstops
+let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'  " use Shift-Tab to move backward through tabstops
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
 " set up the python version Vim is gonna use
-" let g:python3_host_prog= "/usr/bin/python3"
-let g:python3_host_prog = "/research/d4/gds/yzhuang22/anaconda3/bin/python"
+" let g:python3_host_prog="/Users/fisher/miniforge3/bin/python"
+let g:python3_host_prog= "/usr/bin/python3"
+" let g:python3_host_prog = "/research/d4/gds/yzhuang22/anaconda3/bin/python"
 " let g:python_host_prog = "/research/d4/gds/yzhuang22/anaconda3/bin/python"
 
 set fileencodings=utf-8
 set termencoding=utf-8
 set encoding=utf-8
 
-filetype plugin indent on  " Load plugins according to detected filetype.
 if !exists("g:syntax_on") "Enable syntax
     syntax enable
 endif
 
 set nowrap                 " nobreak for a line of code
-"set nu
 
 set backspace=indent,eol,start
 set autoindent             " Indent according to previous line.
@@ -309,22 +324,62 @@ ins_right {
 lualine.setup(config)
 END
 
+" barbar
+" Move to previous/next
+nnoremap <silent>    <C-,> <Cmd>BufferPrevious<CR>
+nnoremap <silent>    <C-.> <Cmd>BufferNext<CR>
 
+" Re-order to previous/next
+nnoremap <silent>    <A-<> <Cmd>BufferMovePrevious<CR>
+nnoremap <silent>    <A->> <Cmd>BufferMoveNext<CR>
+
+" Goto buffer in position...
+nnoremap <silent>    <C-1> <Cmd>BufferGoto 1<CR>
+nnoremap <silent>    <C-2> <Cmd>BufferGoto 2<CR>
+nnoremap <silent>    <C-3> <Cmd>BufferGoto 3<CR>
+nnoremap <silent>    <C-4> <Cmd>BufferGoto 4<CR>
+nnoremap <silent>    <C-0> <Cmd>BufferLast<CR>
+
+" Pin/unpin buffer
+nnoremap <silent>    <A-p> <Cmd>BufferPin<CR>
+
+" Close buffer
+nnoremap <silent>    <A-c> <Cmd>BufferClose<CR>
+" Restore buffer
+nnoremap <silent>    <A-s-c> <Cmd>BufferRestore<CR>
+
+" Wipeout buffer
+"                          :BufferWipeout
+" Close commands
+"                          :BufferCloseAllButCurrent
+"                          :BufferCloseAllButVisible
+"                          :BufferCloseAllButPinned
+"                          :BufferCloseAllButCurrentOrPinned
+"                          :BufferCloseBuffersLeft
+"                          :BufferCloseBuffersRight
+
+" Magic buffer-picking mode
+nnoremap <silent> <C-p>    <Cmd>BufferPick<CR>
+nnoremap <silent> <C-p>    <Cmd>BufferPickDelete<CR>
+
+
+" Other:
+" :BarbarEnable - enables barbar (enabled by default)
+" :BarbarDisable - very bad command, should never be used
 
 
 
 " tagbar
 nmap <F8> :TagbarToggle<CR>
-" leader key related
-"let mapleader="\<Space>"
+
 :command WQ wq
 :command W w
 :command Q q
 
 " copy text to clipboard
-map <leader>y "+y 
+map <leader>y "+y
 "save
-map <leader>s :w<CR> 
+map <leader>s :w<CR>
 imap jk <ESC>
 
 " modifiy the insert mode behavior
@@ -357,41 +412,20 @@ nmap <leader>nn :NERDTreeToggle<CR>
 let g:indentLine_enabled = 1
 let g:indentLine_char='¦'
 
-" Goyo
-nmap <leader>o :Goyo<CR>
 
 " Fold
 set foldmethod=indent "syntax highlighting items specify folds
 set foldlevelstart=99 "start file with all folds opened
 
-" Auto Save
-let g:auto_save = 1
-let g:auto_save_slient = 1
 
 " True color terminal support
 set t_Co=256
 set termguicolors
 
 " Load the colorscheme
-" seoul256 (light):
-"   Range:   252 (darkest) ~ 256 (lightest)
-"   Default: 253
-" let g:seoul256_background = 256
 colo seoul256
-" colo seoul256-light
+"colo seoul256-light
 
-" " set background=dark
-" colorscheme one 
-"colorscheme PaperColor
-"colorscheme monokai
-"colorscheme space_vim_theme
-"
-"For horizon color theme
-"colorscheme horizon
- "lightline
-"let g:lightline.colorscheme = 'horizon'
- "or this line
-"let g:lightline = {'colorscheme' : 'horizon'}
 
 
 "Python Syntax Plus
@@ -433,8 +467,6 @@ func! CompileRun()
         exec '!rm %'
     elseif &filetype == 'python'
         exec '!python3 %'
-    elseif &filetype == 'tex'
-        exec '!xelatex %'
     elseif &filetype == 'php'
         exec '!php %'
     elseif &filetype == 'sh'
@@ -445,3 +477,4 @@ func! CompileRun()
         exec '!tsc %'
     :endif
 :endfunction
+"autocmd VimEnter * source ~/copilot_gen.vim
